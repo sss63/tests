@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="Sergei Osintsev" content="test" />
+	<title>test0</title>
+</head>
+
+<body>
+
+<div id="button1" style="display: block;">
+    <button onclick="showform()">Показать форму</button>
+</div>
+<div id="anketa" style="display: none;">
+    <form name="form" >
+        <p>Имя: <input name="name" type="text" value="Вася"  ></p>
+        <p>Пол: <input name="gend" type="radio" value="Жен" >Женский</input>
+        <input name="gend" type="radio" value="Муж" checked="on">Мужской</input></p>
+        <p>Дата рождения: <input name="birthday" type="date" value="2018-11-22"/></p>
+        <p>Любимый цвет: <select name="color" >
+            <option>зеленый</option> 
+            <option>красный</option> 
+            <option>синий</option>
+        </select></p>       
+        <p>Согласен на обработку данных: <input name="consent" type="checkbox" checked="true"/></p>
+        <p><button onclick="showdata()">Показать анкету</button></p>
+    </form>
+</div>
+
+<script>
+
+var anketa = document.getElementById("anketa");
+var button = document.getElementById("button1");
+
+function showform() {
+    anketa.setAttribute("style", "display: block");
+    button.setAttribute("style", "display: none");
+    console.log(button.getAttribute("style"));     
+}
+
+
+function showdata() {
+    anketa.setAttribute("style", "display: none");
+    button.setAttribute("style", "display: block");
+    
+    var form = document.forms[0];
+    var cons = form["consent"].checked?"Да":"Нет";
+
+    alert("Имя: "+form["name"].value+"\n"+
+                "Пол: "+form["gend"].value+"\n"+
+          "Дата рождения: "+form["birthday"].value+"\n"+
+          "Любимый цвет: "+form["color"].value+"\n"+
+          "Согласие на обработку данных: "+cons);      
+}
+
+</script>
+
+</body>
+</html>
