@@ -4,7 +4,7 @@ $(document).ready(function(){
     var data = {"offset": 0, "page_len": 5};
 
     // инициализация карты
-    ymaps.ready(function() {maps = new ymaps.Map("map", {center: [0, 0], zoom: 5}); });
+    ymaps.ready(function() {maps = new ymaps.Map("map", {center: [0, 0], zoom: 3}); });
 
     // при вводе буквы
     $("#country").keyup(function(){
@@ -31,10 +31,10 @@ $(document).ready(function(){
     // изменяет сосотояние ссылок Prev Next, 
     // вызывает функ работы с картой setMarks
     getCities = function(sqldata) {
-        $.getJSON("serv7.php", sqldata)
+        $.getJSON("serv71.php", sqldata)
             .done(function(cities){
                 console.log(cities);
-                // если получен пустой массив
+                // если получен не пустой массив
                 if (cities) {
                     $("#list").empty();
                     for(let i=0; i<data.page_len; i++) {    
@@ -54,7 +54,8 @@ $(document).ready(function(){
             
                     setMarks(cities, data.page_len);    
                 }
-            });           
+            })
+            .fail(function(){ console.log("error"); });           
     
     }
 
